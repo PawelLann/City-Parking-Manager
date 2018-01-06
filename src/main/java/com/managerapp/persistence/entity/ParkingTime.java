@@ -21,10 +21,10 @@ public class ParkingTime extends AbstractEntity implements Serializable {
 
   @Column(name = "START_PARKING_TIME", nullable = false)
   @DateTimeFormat
-  private LocalDateTime startParkingTime;
+  private transient LocalDateTime startParkingTime;
 
   @Column(name = "END_PARKING_TIME")
   @DateTimeFormat
-  private LocalDateTime endParkingTime;
+  private transient LocalDateTime endParkingTime;
 
 }

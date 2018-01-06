@@ -5,5 +5,19 @@ package com.managerapp.persistence.entity;
  */
 public enum Currency {
 
-  PLN;
+  PLN(1);
+
+  private static int currency;
+
+  Currency(int currency){
+    setCurrency(currency);
+  }
+
+  public static int getCurrency() {
+    return currency;
+  }
+
+  public static void setCurrency(int currency) {
+    Currency.currency = currency;
+  }
 }
