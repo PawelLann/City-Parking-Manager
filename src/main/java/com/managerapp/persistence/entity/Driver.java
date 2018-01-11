@@ -27,21 +27,23 @@ public class Driver extends AbstractEntity implements Serializable {
 
   @NotEmpty
   @Column(nullable = false)
+  private String plates;
+
+  @NotEmpty
+  @Column
   private boolean isDriverStarted;
 
   @OneToOne
   @JoinColumn(name = "ID_PARKING_PAYMENT")
   private ParkingPayment parkingPayment;
 
-  @Column(name = "START_PARKING_TIME", nullable = false)
+  @Column(name = "START_PARKING_TIME")
   @DateTimeFormat
-  private transient LocalDateTime startParkingTime;
-  private DateTime start = startParkingTime.toDateTime();
+  private transient DateTime startParkingTime;
 
   @Column(name = "END_PARKING_TIME")
   @DateTimeFormat
-  private transient LocalDateTime endParkingTime;
-  private DateTime end = endParkingTime.toDateTime();
+  private transient DateTime endParkingTime;
 
   @Column(name = "TOTAL_PARKING_TIME")
   @DateTimeFormat

@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class DayProfit extends AbstractEntity implements Serializable {
 
   @NotNull
   @Column(nullable = false)
-  private double profit;
+  private BigDecimal profit;
 
   @NotNull
   @Column(nullable = false)

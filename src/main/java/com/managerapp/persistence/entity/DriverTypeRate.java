@@ -1,36 +1,52 @@
 package com.managerapp.persistence.entity;
 
+import java.math.BigDecimal;
+
 /**
  * Created by pawel.langwerski@coi.gov.pl on 05.01.18.
  */
 public enum DriverTypeRate {
 
-  REGULAR(1),
-  VIP(2);
+  REGULAR(BigDecimal.valueOf(1)){
+    @Override
+    public BigDecimal countRate(double whichHour){
+      if(whichHour == 1){
+        return BigDecimal.valueOf(1);
+      }
+      if(whichHour == 2){
+        return BigDecimal.valueOf(2);
+      }
+      if(whichHour >= 3){
+        return BigDecimal.valueOf((whichHour-1)*2);
+      }
+      else return BigDecimal.valueOf(0);
 
-  private final double rate;
-  private int whichHour;
+    }
+  },
+  VIP(BigDecimal.valueOf(2)){
+    @Override
+    public BigDecimal countRate(double whichHour) {
+      if(whichHour == 1){
+        return BigDecimal.valueOf(0);
+      }
+      if(whichHour == 2){
+        return BigDecimal.valueOf(2);
+      }
+      if(whichHour >= 3){
+        return BigDecimal.valueOf((whichHour-1)*1.5);
+      }
+      else return BigDecimal.valueOf(0);
+    }
+  };
 
-  DriverTypeRate(double rate){
+
+  private BigDecimal rate;
+  private double whichHour;
+
+
+  DriverTypeRate(BigDecimal rate){
     this.rate = rate;
   }
 
-  public double getRate(int whichHour, DriverTypeRate driverTypeRate){
-    if(driverTypeRate == REGULAR && whichHour==1){
-      return 1;
-    }
-    if((driverTypeRate == REGULAR || driverTypeRate == VIP) && whichHour == 2){
-      return 2;
-    }
-    if(driverTypeRate == REGULAR && whichHour>=3){
-      return getRate(whichHour, driverTypeRate)*2;
-    }
-    if(driverTypeRate == VIP && whichHour==1){
-      return 0;
-    }
-    if(driverTypeRate == VIP && whichHour>=3){
-      return getRate(whichHour, driverTypeRate)*1.5;
-    }
-    else return 0;
-  }
+  public abstract BigDecimal countRate(double whichHour);
 }

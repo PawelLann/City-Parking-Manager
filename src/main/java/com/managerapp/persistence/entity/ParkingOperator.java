@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,5 +26,6 @@ public class ParkingOperator extends AbstractEntity implements Serializable {
   @Column(nullable = false)
   private String name;
 
-  ArrayList<Driver> drivers = Lists.newArrayList();
+  //@OneToMany
+  private ArrayList<Driver> drivers = Lists.newArrayList();
 }
