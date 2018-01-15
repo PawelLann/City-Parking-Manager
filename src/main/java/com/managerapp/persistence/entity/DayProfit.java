@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.Setter;
+import org.joda.time.DateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,11 +28,11 @@ public class DayProfit extends AbstractEntity implements Serializable {
 
   @NotNull
   @Column(nullable = false)
-  private BigDecimal profit;
+  private int profit;
 
   @NotNull
   @Column(nullable = false)
-  private transient LocalDateTime date;
+  private transient DateTime date;
 
   @OneToMany
   @JoinColumn(name = "ID_PARKING_PAYMENT")

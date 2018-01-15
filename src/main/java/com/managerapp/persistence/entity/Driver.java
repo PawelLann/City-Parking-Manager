@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
+import org.springframework.context.annotation.Bean;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
@@ -26,16 +27,14 @@ import java.io.Serializable;
 public class Driver extends AbstractEntity implements Serializable {
 
   @NotEmpty
-  @Column(nullable = false)
+  @Column(name = "PLATES")
   private String plates;
 
-  @NotEmpty
   @Column
   private boolean isDriverStarted;
 
-  @OneToOne
   @JoinColumn(name = "ID_PARKING_PAYMENT")
-  private ParkingPayment parkingPayment;
+  private int parkingPayment;
 
   @Column(name = "START_PARKING_TIME")
   @DateTimeFormat

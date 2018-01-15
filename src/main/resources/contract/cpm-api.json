@@ -1,0 +1,357 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a REST API server for City Parking Manager application.",
+    "version": "0.0.1",
+    "title": "CPM"
+  },
+  "host": "172.31.16.43:8080",
+  "basePath": "/cpm",
+  "tags": [
+    {
+      "name": "driver"
+    },
+    {
+      "name": "dayProfit"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/driver": {
+      "post": {
+        "tags": [
+          "driver"
+        ],
+        "summary": "Creates a driver and starts parking time",
+        "operationId": "createDriver",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "DriverFormDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DriverFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/driver/{plates}": {
+      "get": {
+        "tags": [
+          "driver"
+        ],
+        "summary": "Returns a driver's parking payment",
+        "operationId": "getPayment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "plates",
+            "in": "path",
+            "description": "Driver plates",
+            "required": true,
+            "type": "string",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DriverViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "driver"
+        ],
+        "summary": "Stops parking time",
+        "operationId": "stopParkingTime",
+        "parameters": [
+          {
+            "name": "plates",
+            "in": "path",
+            "description": "Driver plates",
+            "required": true,
+            "type": "string",
+            "minimum": 1
+          },
+          {
+            "name": "DriverFormDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DriverFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/driver/status/{plates}": {
+      "get": {
+        "tags": [
+          "driver"
+        ],
+        "summary": "Returns a single user by ID",
+        "operationId": "getUserById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "plates",
+            "in": "path",
+            "description": "ID of a user",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/DriverStatusDto"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/profits/{date}": {
+      "get": {
+        "tags": [
+          "dayProfit"
+        ],
+        "summary": "Returns a single user by ID",
+        "operationId": "getUserByI",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "ID of a user",
+            "required": true,
+            "type": "string",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/DayProfitViewDto"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DriverFormDto": {
+      "type": "object",
+      "properties": {
+        "plates": {
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 10,
+          "pattern": "^[A-Z0-9a-z._%+-]*$"
+        },
+        "startParkingTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endParkingTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "plates"
+      ]
+    },
+    "DriverViewDto": {
+      "type": "object",
+      "properties": {
+        "plates": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalParkingTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "parkingPayment": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DriverStatusDto": {
+      "type": "object",
+      "properties": {
+        "plates": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isDriverStarted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DayProfitViewDto": {
+      "type": "object",
+      "properties": {
+        "startParkingTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "profit": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ErrorDto": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

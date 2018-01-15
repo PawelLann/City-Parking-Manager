@@ -22,7 +22,7 @@ import java.util.Set;
 public class ParkingPayment extends AbstractEntity implements Serializable {
 
   @Column(name = "PAYMENT")
-  private BigDecimal payment;
+  private int payment;
 
   //private Set<CurrencyUnit> acceptedCurrencies = Sets.newHashSet();
 
