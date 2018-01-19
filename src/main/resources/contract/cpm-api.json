@@ -276,14 +276,6 @@
           "minLength": 6,
           "maxLength": 10,
           "pattern": "^[A-Z0-9a-z._%+-]*$"
-        },
-        "startParkingTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "endParkingTime": {
-          "type": "string",
-          "format": "date-time"
         }
       },
       "required": [

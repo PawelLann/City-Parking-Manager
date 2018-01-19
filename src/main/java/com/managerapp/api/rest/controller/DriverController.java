@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
 
 /**
  * Created by pawel.langwerski@coi.gov.pl on 15.01.18.
@@ -29,7 +32,7 @@ public class DriverController implements DriverApi {
   @Override
   public ResponseEntity<Void> createDriver(@RequestBody DriverFormDto driverFormDto) {
     driverService.createDriver(driverFormDto);
-    return new ResponseEntity<>(HttpStatus.OK);
+    return new ResponseEntity<>(CREATED);
   }
 
   @Override

@@ -27,10 +27,10 @@ import java.io.Serializable;
 public class Driver extends AbstractEntity implements Serializable {
 
   @NotEmpty
-  @Column(name = "PLATES")
+  @Column(name = "PLATES", nullable = false)
   private String plates;
 
-  @Column
+  @Column(name = "IS_DRIVER_STARTED")
   private boolean isDriverStarted;
 
   @JoinColumn(name = "ID_PARKING_PAYMENT")

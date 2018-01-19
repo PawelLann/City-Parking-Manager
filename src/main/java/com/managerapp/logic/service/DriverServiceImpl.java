@@ -42,26 +42,4 @@ public class DriverServiceImpl implements DriverService {
     startParkingTime(driver);
 
   }
-
-/*
-
-  @Override
-  public void startParkingTime(Driver driver) {
-    log.debug("Starting parking time");
-    driver.setStartParkingTime(DateTime.now());
-  }
-
-  @Override
-  public ParkingPayment stopParkingTime(Driver driver) {
-    return null;
-  }
-
-  @Override
-  public void createDriver(DriverFormDto driverFormDto) {
-    log.debug("Creating new driver");
-    Preconditions.checkNotNull(driverFormDto,"Plates cannot be null");
-    Driver driver = DRIVER_MAPPER.map(driverFormDto);
-    driverRepository.save(driver);
-    startParkingTime(driver);
-*/
 }

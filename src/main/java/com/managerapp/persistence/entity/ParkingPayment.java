@@ -24,23 +24,6 @@ public class ParkingPayment extends AbstractEntity implements Serializable {
   @Column(name = "PAYMENT")
   private int payment;
 
-  //private Set<CurrencyUnit> acceptedCurrencies = Sets.newHashSet();
-
-
-
-  //notatki
-
-
-  /*private double sum = parkingMeter.getHours().doubleValue();
-
-  public double payment(double sum, DriverTypeRate driverTypeRate, CurrencyUnit currency){
-
-
-  Period period = Period.fieldDifference(startParkingTime,endParkingTime);
-
-  Duration duration = new Duration(start,end);
-  Integer hours = Integer.valueOf(duration.toStandardHours().toString());*/
-
 }
 
 
